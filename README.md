@@ -1,6 +1,8 @@
 # Trajectory Labs Office Robot
 
-Weekend hackathon project — a cool, interactive AI robot for the office. Should feel like a character, not a tool.
+Let's make a TL bot!
+
+WARNING: the rest of this was written by claude
 
 ## Interaction Modes
 
