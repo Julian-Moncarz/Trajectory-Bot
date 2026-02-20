@@ -26,18 +26,19 @@ WARNING: the rest of this was written by claude
 - **Budget:** Under $300 CAD (see `parts.md`)
 - **Timeline:** Weekend hackathon (2 days), 4-6+ people
 - **Skills:** Python confirmed, 3D printing confirmed, electronics uncertain
-- **Environment:** Indoor coworking space — main room, hallways, meeting rooms. Not huge. Robot can't open doors (asks humans via Slack).
+- **Environment:** Indoor coworking space — main room, hallways, meeting rooms. Same env all the time. Robot can't open doors (asks humans via Slack).
 
 ## Architecture (Settled)
 
 - **Raspberry Pi 4** as main computer
 - **Camera + speaker + mic** for perception and voice
 - **LLM via cloud API** (Claude/OpenAI) as the brain
-- **Two-loop design:** fast motor control loop on Pi (~20-50Hz, no LLM) + slow thinking loop (camera + status → LLM every few seconds → tool calls)
-- **Inner monologue pattern:** LLM continuously receives camera frames, nav status, Slack messages, and decides what to do next
 - **Power:** Separate supplies for Pi (USB power bank) and motors (AA batteries) to avoid voltage dip crashes
 
 ## Open Decisions
+
+- **Two-loop design?:** fast motor control loop on Pi (~20-50Hz, no LLM) + slow thinking loop (camera + status → LLM every few seconds → tool calls)
+- **Inner monologue pattern?:** LLM continuously receives camera frames, nav status, Slack messages, and decides what to do next
 
 ### Navigation
 1. Remote control only
