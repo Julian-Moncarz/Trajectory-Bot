@@ -50,9 +50,9 @@ All prices in CAD. Order from Amazon.ca for 1-2 day Prime delivery.
 
 | | |
 |--|--|
-| **Estimated total** | **~$298 CAD (~$207 USD)** |
-| Budget | $300 USD |
-| **Remaining** | **~$93 USD** |
+| **Estimated total** | **~$298 CAD** |
+| Budget | $300 CAD |
+| **Remaining** | **~$2 CAD** |
 
 ## Notes
 

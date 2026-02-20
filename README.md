@@ -14,7 +14,7 @@ The robot should feel like a character, not a tool.
 
 ## Environment
 
-Indoor coworking office space. Multiple rooms with doors (robot doesn't need to open doors — can ask humans or message Slack). People walking around, so it needs to be visible enough not to get stepped on. Stretch goal: elevator access for speaker events (~2x/week).
+Indoor coworking office space. Multiple rooms with doors (robot doesn't need to open doors — can ask humans or message Slack). People walking around, so it needs to be visible enough not to get stepped on. Stretch goal: elevator access for speaker events (~2x/week). **Office layout:** One main room (island table, sink, coffee, big lunch table, nooks) accessed through push/pull doors from elevators, plus hallways leading to meeting rooms and office rooms. Not a huge space — navigation should be manageable.
 
 ## Functional Requirements (MVP — Tier 2)
 
@@ -33,8 +33,8 @@ Indoor coworking office space. Multiple rooms with doors (robot doesn't need to 
 
 ## Budget, Timeline & Team
 
-- Under $300 hardware
-- Weekend hackathon (2 days), 4-6 people
+- Under $300 CAD hardware
+- Weekend hackathon (2 days), 4-6+ people
 - Python/software skills confirmed
 - 3D printing access confirmed
 - Electronics/soldering uncertain but figure-outable
@@ -84,3 +84,58 @@ Indoor coworking office space. Multiple rooms with doors (robot doesn't need to 
 ## Hard Blocker
 
 Hardware parts need to be ordered ASAP so they arrive in time. The parts list should cover the common components across all options (Pi 5, camera, motors, battery, mic, speaker, motor driver) so choices remain open.
+
+## Things to figure out:
+
+WiFi reliability — the robot depends on cloud APIs for its brain. What's the WiFi like throughout the office? Dead spots = a robot that suddenly goes braindead mid-hallway. Does it need a fallback behavior when it loses connection? **Safety behaviors:** Need to define what happens when stuck, low battery, lost WiFi, hears nothing for a while. Important but not yet specified
+
+## Battery:
+
+Got it. Let me research the battery/charging situation for a Pi 5-based mobile robot, then I'll summarize everything including the new context you gave me.Here's what I found on battery and charging for this robot. Let me break it down clearly.
+
+### The core problem
+
+The Pi 5 is power-hungry compared to older Pis. It idles at ~4W and peaks around 25W under heavy load. For our robot, realistic average draw would be somewhere around 8-12W when you add up the Pi (doing WiFi + camera + processing), motors (intermittent but spiky), speaker, mic, and camera. Motors are the wild card — they draw very little when cruising but huge spikes when starting up or hitting resistance (like carpet transitions or bumping into things).
+
+### The key design decision: one battery or two?
+
+The strong consensus from the robotics community is **use separate power for the Pi and the motors**. When motors start up, they create current spikes that can cause the Pi's voltage to dip, which either crashes it or corrupts the SD card. Commercial robots like Roombas solve this with proper power engineering, but for a weekend hackathon, two separate supplies is much safer and simpler.
+
+**Recommended approach:** One power source for the Pi (brain), one for the motors (muscle). They share a common ground but otherwise stay isolated.
+
+### Option 1: USB power bank for Pi + AA batteries for motors (~$25-40)
+
+This is the simplest, cheapest approach. A 20,000mAh USB-C power bank powers the Pi, and a pack of 6-8 rechargeable AA NiMH batteries powers the motors through the motor driver.
+
+**Runtime estimate:** A decent 20,000mAh power bank gives roughly 50-70Wh usable. At ~6-8W average Pi draw, that's **6-10 hours for the Pi**. The AA pack for motors would last longer than that for small DC motors that aren't running continuously.
+
+**Pros:** Cheap, no soldering, swap/recharge power bank easily, everyone has a phone charger to recharge it.
+**Cons:** Power bank might not deliver the full 5A the Pi 5 wants (most cap at 3A, which actually works fine for most use cases). Bulky — you're carrying a phone power bank inside the robot. Some power banks auto-shut-off if current draw is too low (Pi at idle might trigger this).
+
+**Gotcha with Pi 5 specifically:** The Pi 5 uses USB Power Delivery (PD) negotiation to unlock its full 5A mode. Most cheap power banks don't support PD properly, so the Pi runs in a limited 600mA USB mode. In practice, people report 3A power banks run the Pi 5 fine for most tasks — you just can't plug in tons of USB peripherals. For our use case (camera, mic, speaker) it should be okay.
+
+### Option 2: UPS HAT with 18650 batteries (~$30-55 + $15-30 for batteries)
+
+A UPS HAT (an add-on board that sits on top of or below the Pi) holds rechargeable 18650 lithium cells and provides proper regulated 5V/5A power to the Pi. Popular options include the Geekworm X1200 (2-cell, ~$30) or X1202 (4-cell, ~$50), and the DFRobot UPS HAT (~$53).
+
+**Runtime estimate with 4x 18650 cells:** Four quality 3000mAh 18650s give about 44Wh. At ~6-8W Pi draw, that's roughly **5-7 hours**. The DFRobot product page claims up to 10 hours with good batteries. Motors would still need their own separate battery pack.
+
+**Pros:** Clean, purpose-built solution. Charges via USB-C or DC jack while running (you can plug it in and it charges the batteries while powering the Pi — true UPS behavior). Provides the full 5A the Pi 5 wants. Some have I2C battery monitoring so the robot can know its own battery level. Compact — sits right on the Pi.
+**Cons:** More expensive. Need to buy 18650 batteries separately ($5-8 each for good Samsung/Panasonic cells). Still need separate motor power.
+
+### Option 3: Single LiPo battery with buck converters (~$30-50)
+
+Use one larger RC hobby LiPo battery (e.g., 3S 11.1V, 2200-5000mAh) and two separate buck converters (voltage step-down boards, ~$2-5 each) — one outputting 5V for the Pi, one outputting 6V for the motors. This is how a lot of hobbyist robots are actually built.
+
+**Runtime estimate with 3S 5000mAh LiPo:** About 55Wh total. Split between Pi and motors, maybe **3-5 hours** depending on how much the robot drives.
+
+**Pros:** One battery to charge. Lighter overall. Proper voltage for motors (6-12V is better than 5V for DC motors). Most elegant long-term solution.
+**Cons:** Needs a LiPo charger (~$15-20). LiPo batteries need careful handling (can catch fire if punctured or overcharged). Requires some basic wiring/soldering. Slightly more complex.
+
+### Claude's recommendation for the hackathon
+
+**Start with Option 1** (power bank + AA batteries). It's the fastest to get working, requires zero soldering, and gives plenty of runtime for a demo day. Buy a decent 20,000mAh USB-C power bank (~$20-30) and a pack of rechargeable AAs. If the power bank auto-shutoff is a problem, there are tiny USB "keep alive" devices for 3 that prevent it.
+
+**Upgrade to Option 2 or 3 later** if you want a cleaner long-term solution. The UPS HAT is the most "set and forget" option since it charges while running.
+
+**Also strongly consider having a charging cable/dock as a fallback.** Even commercial office robots (like the Amazon Astro) dock to charge. The robot could have a "home base" that's just a spot near an outlet where someone plugs it in, and the robot's personality could even announce "I'm getting tired, heading back to charge."
