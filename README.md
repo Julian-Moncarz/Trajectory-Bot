@@ -4,6 +4,14 @@ Let's make a TL bot!
 
 WARNING: the rest of this was written by claude
 
+## TODO
+
+- [ ] Find a time for an initial design meeting
+- [ ] Post on main Slack about this
+- [ ] Order parts (see `parts.md`)
+- [ ] See if we can get the money from TL
+- [ ] Find a time for building it (likely a full weekend day or two)
+
 ## Interaction Modes
 
 - **Voice** — natural turn-taking conversation with a fun personality
