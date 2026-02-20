@@ -78,4 +78,4 @@ WARNING: the rest of this was written by claude
 - **WiFi reliability** — cloud-dependent robot + dead spots = problems. Fallback behavior needed?
 - **Safety behaviors** — what happens when stuck, low battery, lost WiFi?
 - **Battery life** — USB power bank gives ~6-10hrs for Pi, AAs last longer for motors. Consider a "home base" charging spot.
-- Is this just a robot + slack, or is it an OpenClaw agent which also lives in a robot? If it is an OpenClaw agent, where are we running the agent? On the Pi obaord or a seperate computer? If a seperate computer, can we get away with a very weak computer onboard?
+- **OpenClaw as the brain?** — could run OpenClaw on a separate laptop with the robot as a thin client (Pi Zero 2 W), saving ~$63. See [`openclaw-architecture.md`](openclaw-architecture.md)
