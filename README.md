@@ -2,8 +2,6 @@
 
 Let's make a TL bot!
 
-WARNING: the rest of this was written by claude
-
 ## TODO
 
 - [ ] Find a time for an initial design meeting
@@ -11,6 +9,9 @@ WARNING: the rest of this was written by claude
 - [ ] Order parts (see `parts.md`)
 - [ ] See if we can get the money from TL
 - [ ] Find a time for building it (likely a full weekend day or two)
+
+WARNING: the rest of this was written by claude
+
 
 ## Interaction Modes
 
