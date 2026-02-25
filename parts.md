@@ -46,6 +46,13 @@ All prices in CAD. Order from Amazon.ca for 1-2 day Prime delivery.
 | Jumper wires + breadboard kit | $12 | [Amazon.ca](https://www.amazon.ca/s?k=breadboard+jumper+wire+kit) |
 | Mounting hardware (standoffs, screws, zip ties) | $8 | [Amazon.ca](https://www.amazon.ca/s?k=M2.5+standoff+kit+raspberry+pi) |
 
+## Pi Zero Extras (if using thin-body architecture)
+
+| Part | Est. Price | Link |
+|------|-----------|------|
+| Pi Zero camera ribbon cable (smaller CSI connector) | $3 | [Amazon.ca](https://www.amazon.ca/s?k=pi+zero+camera+cable) |
+| Micro-USB OTG hub (for USB mic + speaker) | $8 | [Amazon.ca](https://www.amazon.ca/s?k=micro+usb+otg+hub) |
+
 ## Total
 
 | | |
