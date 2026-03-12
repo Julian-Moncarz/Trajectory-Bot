@@ -10,8 +10,6 @@ Let's make a TL bot!
 - [ ] See if we can get the money from TL
 - [ ] Find a time for building it (likely a full weekend day or two)
 
-WARNING: the rest of this was written by claude
-
 
 ## Interaction Modes
 
