@@ -29,7 +29,7 @@ All prices in CAD. Order from Amazon.ca for 1-2 day Prime delivery.
 | Part | Est. Price | Link |
 |------|-----------|------|
 | HC-SR04 ultrasonic sensor (obstacle avoidance) | $6 | [Amazon.ca](https://www.amazon.ca/s?k=HC-SR04+ultrasonic+sensor) |
-| Small display for face (OLED or 3.5" LCD) | $20 | [Amazon.ca](https://www.amazon.ca/s?k=raspberry+pi+small+LCD+display) |
+| Small display for face (OLED) | $20 | [Amazon.ca](https://www.amazon.ca/s?k=large+OLED) |
 
 ## Power
 
@@ -63,8 +63,6 @@ All prices in CAD. Order from Amazon.ca for 1-2 day Prime delivery.
 
 ## Notes
 
-- Pi 4 2GB is plenty — the LLM runs in the cloud, Pi just handles camera capture, audio streaming, and motor control
 - Separate power for Pi (power bank) and motors (AA batteries) is recommended to avoid voltage dips crashing the Pi
 - If the power bank has auto-shutoff issues at low draw, grab a USB "keep alive" dongle (~$3)
 - Some chassis kits include an L298N — check listing to avoid buying it twice
-- Display choice matters: small OLED is cheap but tiny, 3.5" LCD gives more room for an expressive face
