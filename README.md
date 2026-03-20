@@ -2,6 +2,7 @@
 
 Let's make a robot body, and have an agent running on a laptop pilot it!
 
+The mvp here is just: wire components up to a pi zero on a frame, expose them over curl, have claude code on a laptop pilot the bot.
 Uses:
 - You can talk to the robot body and have a realtime convo with it
 - The robot can see things or people and comment unprompted
