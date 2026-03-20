@@ -1,0 +1,8 @@
+- SLAM and A+ nav
+- prebuilt faces / emotions to choose from
+- slack (1 agent per channel + /new or something?, lockfile for who gets to pilot the robot)
+- voice (prob local model - koroko maybe)
+- persistant ~/memory with memory cleanup run each night
+- lidar (~100$)
+- face / voice recognition (or just "read files of faces you know - does this match any of them?)
+- better realtime conversation - maybe use pipecat? or just hack it and use the --json in json out mode of claude code, and send user phrases as messages as they roll in / do a 2 layre thing where you talk to one conversational model, which has the ability to phone home to a cc session running in the background to do longer work so it is non blocking.

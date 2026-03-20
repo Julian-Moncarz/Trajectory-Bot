@@ -39,7 +39,7 @@ Use Tailscale (free) on both laptop and Pi. Creates a direct WireGuard tunnel so
 | Part | Est. Price | Link |
 |------|-----------|------|
 | VL53L0X Time-of-Flight distance sensor (I2C, 3.3V native) | $6 | [Amazon.ca](https://www.amazon.ca/s?k=VL53L0X+time+of+flight+sensor) |
-| 1.3" OLED display, I2C, SH1106 (for face) | $15 | [Amazon.ca](https://www.amazon.ca/s?k=1.3+inch+OLED+I2C+SH1106) |
+| 2.42" OLED display, I2C, SSD1309 (Hosyond, for face) | $30 | [Amazon.ca](https://www.amazon.ca/Hosyond-128x64-Display-SSD1309-Arduino/dp/B0G2RFLG1L) |
 
 ## Power
 
@@ -64,7 +64,7 @@ Use Tailscale (free) on both laptop and Pi. Creates a direct WireGuard tunnel so
 
 | | |
 |--|--|
-| **Estimated total** | **~$255 CAD** |
+| **Estimated total** | **~$270 CAD** |
 
 ## Notes
 
@@ -73,6 +73,7 @@ Use Tailscale (free) on both laptop and Pi. Creates a direct WireGuard tunnel so
 - **VL53L0X vs HC-SR04P:** VL53L0X is a laser time-of-flight sensor. Uses I2C (shared bus, fewer GPIO pins), does ranging internally (no timing-sensitive code on Linux), natively 3.3V. 1.2m max range is plenty indoors. If unavailable on Amazon, fall back to HC-SR04P ($6) + logic level shifter ($5).
 - **PCM5102 I2S DAC vs USB audio adapter:** The DAC connects directly to GPIO for audio output — no USB port or OTG hub needed. Fewer cables, fewer failure points on a moving robot. If unavailable, fall back to USB audio adapter ($10) + OTG hub ($8) + 3.5mm clip-on mic ($5).
 - Some chassis kits include a motor driver — check listing to avoid buying it twice
+- **Check if chassis kit includes encoder discs** (slotted plastic discs on motor shafts). If yes, grab optical encoder sensor modules (~$5) — gives you distance/rotation feedback for navigation. If not, a full encoder kit (discs + sensors) is ~$10.
 - **TB6612FNG vs L298N:** The TB6612 is a MOSFET driver with <0.5V voltage drop (vs ~2V on L298N). With 6xAA (7.2V) you get ~6.7V to motors instead of ~5.2V. Also natively 3.3V logic — no level shifting needed.
 - **Pre-hackathon:** flash both SD cards, set up WiFi config, install Tailscale, write + test Pi HTTP server. Don't do first-time setup OR first-time coding on hackathon day.
 - **Bring from home:** wire strippers, small Phillips screwdriver, keyboard (emergency Pi debug), HDMI cable, extension cord, power strip, spare micro-USB cables, multimeter if you own one
